@@ -24,5 +24,9 @@ namespace PoligonGUI3102026B
             if ((A.x == B.x) && (A.y == B.y)) return true;
             else return false;
         }
+        public string toString()
+        {
+            return "("+x+", "+y+")";
+        }
     }
 }

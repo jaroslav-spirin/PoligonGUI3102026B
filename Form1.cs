@@ -13,7 +13,7 @@ namespace PoligonGUI3102026B
     public partial class Form1 : Form
     {
         private readonly List<Tacka> _points = new List<Tacka>();
-        poligon radni;
+        poligon radni = new poligon(0);
         public Form1()
         {
             InitializeComponent();
@@ -54,6 +54,7 @@ namespace PoligonGUI3102026B
         public void AddPoint(Tacka t)
         {
             _points.Add(t);
+            listBox1.Items.Add(t.toString());
             panel1.Invalidate();
         }
 
@@ -110,7 +111,7 @@ namespace PoligonGUI3102026B
 
         private void button4_Click(object sender, EventArgs e)
         {
-            radni.snimi();
+            if (_points.Count!=0) radni.snimi();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -125,19 +126,27 @@ namespace PoligonGUI3102026B
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (radni.prost()) label1.Text = "Prost";
-            else label1.Text = "Nije prost";
+            if (radni.prost()) MessageBox.Show("Prost");
+            else MessageBox.Show("Nije prost");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (radni.konveksan()) label2.Text = "Konveksan";
-            else label2.Text = "Konkavan";
+            if (radni.konveksan()) MessageBox.Show("Konveksan");
+            else MessageBox.Show("Konkavan");
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            label5.Text = radni.povrsina().ToString();
+            MessageBox.Show(radni.povrsina().ToString());
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            _points.Clear();
+            listBox1.Items.Clear();
+            radni = new poligon(0);
+            panel1.Invalidate();
         }
     }
 }
